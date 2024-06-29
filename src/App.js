@@ -554,6 +554,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PacmanLoader } from 'react-spinners'; // Import PacmanLoader from react-spinners
 import './styles.css';
+import MenuIcon from '@mui/icons-material/Menu';
+import Sidebar from './Components/Sidebar';
+import Footer from './Components/Footer/Footer';
 
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBKwmxvZ6CNV6LubLjo0AaKJyDG4YFZ20A';
 
@@ -563,6 +566,8 @@ function App() {
   const [loadingAI, setLoadingAI] = useState(false); // State for AI loading indication
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [darkMode, setDarkMode] = useState(false); // State for dark mode
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const messageEndRef = useRef(null);
 
   // Scroll to the bottom of messages on new message
@@ -654,6 +659,10 @@ function App() {
     setDarkMode(prevMode => !prevMode);
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   // Function to parse markdown for bold and italic
   const parseMarkdown = (text) => {
     // Parse bold (**bold**) and italic (*italic*)
@@ -664,7 +673,13 @@ function App() {
 
   return (
     <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
-      <header className="header">AI Chat</header>
+      <header className="header">
+        <div className="menu-icon" onClick={toggleSidebar}>
+          <MenuIcon />
+        </div>
+        <span className="header-title">AI Chat</span>
+      </header>
+      <Sidebar open={sidebarOpen} onClose={toggleSidebar} />
       <div className="chat-container">
         <div className="messages-container">
           {messages.map((msg, index) => (
@@ -692,7 +707,6 @@ function App() {
           )}
           <div ref={messageEndRef}></div>
         </div>
-     
         <form className="form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -711,14 +725,11 @@ function App() {
           <span className="theme-text">{darkMode ? 'Dark Mode' : 'Light Mode'}</span>
         </div>
       </div>
+      <Footer />
+
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
 
