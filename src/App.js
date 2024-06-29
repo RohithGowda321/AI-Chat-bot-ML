@@ -15,8 +15,6 @@ import Chat from './Screens/Chat/Chat';
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
-
-
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
