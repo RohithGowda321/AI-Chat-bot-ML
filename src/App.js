@@ -560,7 +560,6 @@ const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
   const [loadingAI, setLoadingAI] = useState(false); // State for AI loading indication
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [darkMode, setDarkMode] = useState(false); // State for dark mode
