@@ -20,7 +20,6 @@ const App = () => {
   };
 
   return (
-    <Router>
     <div className="app">
       <Sidebar open={sidebarOpen} onClose={toggleSidebar} />
       <div className="content">
@@ -41,7 +40,6 @@ const App = () => {
         </Switch>
       </div>
     </div>
-  </Router>
   );
 };
 
