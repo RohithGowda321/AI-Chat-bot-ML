@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Switch from 'react-router-dom/Switch';
 import './styles.css';
 import Sidebar from './Components/Sidebar';
 import MenuIcon from '@mui/icons-material/Menu';
