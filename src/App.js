@@ -1,7 +1,8 @@
 // App.js
 
 import React from 'react';
-import { Switch, Route, Navigate } from 'react-router-dom'
+import { Route, Navigate } from 'react-router-dom'
+import { Switch } from 'react-router-dom';
 import './styles.css';
 import Sidebar from './Components/Sidebar';
 import MenuIcon from '@mui/icons-material/Menu';
