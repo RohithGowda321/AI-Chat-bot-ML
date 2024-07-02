@@ -1,7 +1,7 @@
 // App.js
 
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Switch from 'react-router-dom/Switch';
 import './styles.css';
 import Sidebar from './Components/Sidebar';
@@ -31,14 +31,14 @@ const App = () => {
           <span className="header-title">AI Chat</span>
        
         </header>
-        <Switch>
-          <Route exactpath="/" Component={<Dashboard />} />
-          <Route path="/dashboard/profile" Component={<Profile />} />
-          <Route path="/dashboard/settings" Component={<Settings />} />
-          <Route path="/dashboard/about" Component={<About />} />
-          <Route path="/dashboard/chat" Component={<Chat />} />
-          <Route path="*" Component={<Navigate to="/" />} />
-        </Switch>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard/profile" element={<Profile />} />
+            <Route path="/dashboard/settings" element={<Settings />} />
+            <Route path="/dashboard/about" element={<About />} />
+            <Route path="/dashboard/chat" element={<Chat />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
       </div>
     </div>
   );
