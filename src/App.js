@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom'
-import { Switch } from 'react-router-dom';
+import Switch from 'react-router-dom/Switch';
 import './styles.css';
 import Sidebar from './Components/Sidebar';
 import MenuIcon from '@mui/icons-material/Menu';
