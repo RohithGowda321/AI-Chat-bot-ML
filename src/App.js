@@ -31,11 +31,11 @@ const App = () => {
        
         </header>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/profile" element={<Profile />} />
             <Route path="/dashboard/settings" element={<Settings />} />
             <Route path="/dashboard/about" element={<About />} />
-            <Route path="/dashboard/chat" element={<Chat />} />
+            <Route path="/" element={<Chat />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
       </div>
