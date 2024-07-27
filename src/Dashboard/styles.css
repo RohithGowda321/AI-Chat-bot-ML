@@ -1,0 +1,135 @@
+:root {
+  --primary-color: #4A90E2;
+  --secondary-color: #50E3C2;
+  --background-color: #F5F7FA;
+  --text-color: #333;
+  --card-bg: #fff;
+  --card-shadow: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.dashboard {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.top-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.small-card {
+  background-color: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.small-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.interactive-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h2 {
+  font-size: 1.75rem;
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+}
+
+.chart-container {
+  height: 300px;
+  position: relative;
+}
+
+.expand-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.recent-activities {
+  margin-bottom: 20px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.activity-item:hover {
+  background-color: #f0f0f0;
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-right: 15px;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-time {
+  color: #888;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .top-cards {
+    flex-direction: column;
+  }
+
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+}
