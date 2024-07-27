@@ -1,0 +1,124 @@
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #50E3C2;
+    --background-color: #F5F7FA;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.2);
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .profile-page {
+    padding: 20px;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 20px;
+  }
+  
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border: 4px solid var(--primary-color);
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-name {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  .profile-bio {
+    font-size: 1rem;
+    color: var(--text-color);
+  }
+  
+  .stats-card {
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+  }
+  
+  .tabs-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--card-shadow);
+  }
+  
+  .chart-container {
+    height: 300px;
+    position: relative;
+  }
+  
+  .MuiTabs-root {
+    border-bottom: 1px solid var(--card-shadow);
+  }
+  
+  .MuiTab-root {
+    font-weight: bold;
+  }
+  
+  .MuiTab-root.Mui-selected {
+    color: var(--primary-color);
+  }
+  
+  .MuiCardContent-root {
+    padding: 20px;
+  }
+  
+  .activity-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .activity-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .activity-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+  }
+  
+  .activity-content {
+    flex: 1;
+  }
+  
+  .activity-time {
+    color: #888;
+    font-size: 0.875rem;
+  }
+  
+  @media (max-width: 768px) {
+    .profile-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .profile-avatar {
+      margin-bottom: 15px;
+    }
+  }
+  
