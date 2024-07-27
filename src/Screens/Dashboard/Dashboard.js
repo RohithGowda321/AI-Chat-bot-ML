@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'chart.js/auto';
 import { Chart } from 'primereact/chart';
-import { Card } from 'primereact/card';
-import { Button } from 'primereact/button';
-import './styles.css'; // Import your custom styles
+import { Card, CardContent, Typography, IconButton, Collapse, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { ExpandMore, ExpandLess, Person, ArrowUpward, ArrowDownward, Settings } from '@mui/icons-material';
+import './styles.css'; // Import custom styles
 
 const Dashboard = () => {
-  const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  const [openActivities, setOpenActivities] = useState(false);
+
+  const barData = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
     datasets: [
       {
-        label: 'Data 1',
-        backgroundColor: '#42A5F5',
+        label: 'Sales',
+        backgroundColor: 'rgba(74, 144, 226, 0.7)',
+        borderColor: '#4A90E2',
+        borderWidth: 1,
         data: [65, 59, 80, 81, 56, 55, 40]
       },
       {
-        label: 'Data 2',
-        backgroundColor: '#FFA726',
+        label: 'Expenses',
+        backgroundColor: 'rgba(80, 227, 194, 0.7)',
+        borderColor: '#50E3C2',
+        borderWidth: 1,
         data: [28, 48, 40, 19, 86, 27, 90]
       }
     ]
@@ -33,9 +39,18 @@ const Dashboard = () => {
   };
 
   const options = {
-    scales: {
-      y: {
-        beginAtZero: true
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return context.dataset.label + ': ' + context.raw;
+          }
+        }
       }
     }
   };
@@ -44,68 +59,125 @@ const Dashboard = () => {
     <div className="dashboard">
       <h1 className="dashboard-title">AI Dashboard</h1>
 
-      <div className="p-grid p-nogutter dashboard-content">
-        <div className="p-col-12 p-md-6 p-lg-4">
-          <Card className="card">
-            <h2>AI Analysis</h2>
-            <Chart type="bar" data={data} options={options} style={{ height: '300px' }} />
-          </Card>
-        </div>
+      <div className="top-cards">
+        <Card className="small-card">
+          <CardContent>
+            <Typography variant="h6" component="div">New Users</Typography>
+            <Typography variant="h4" component="div">123</Typography>
+          </CardContent>
+        </Card>
+        <Card className="small-card">
+          <CardContent>
+            <Typography variant="h6" component="div">Active Sessions</Typography>
+            <Typography variant="h4" component="div">456</Typography>
+          </CardContent>
+        </Card>
+        <Card className="small-card">
+          <CardContent>
+            <Typography variant="h6" component="div">Server Status</Typography>
+            <Typography variant="h4" component="div">Online</Typography>
+          </CardContent>
+        </Card>
+        <Card className="small-card">
+          <CardContent>
+            <Typography variant="h6" component="div">Sales Today</Typography>
+            <Typography variant="h4" component="div">$7890</Typography>
+          </CardContent>
+        </Card>
+      </div>
 
-        <div className="p-col-12 p-md-6 p-lg-4">
-          <Card className="card">
-            <h2>Recommendations</h2>
-            <ul>
-              <li>Recommendation A</li>
-              <li>Recommendation B</li>
-              <li>Recommendation C</li>
-            </ul>
-          </Card>
-        </div>
+      <div className="dashboard-content">
+        <Card className="interactive-card">
+          <CardContent>
+            <Typography variant="h5" component="div">Sales Overview</Typography>
+            <div className="chart-container">
+              <Chart type="bar" data={barData} options={options} />
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="p-col-12 p-md-6 p-lg-4">
-          <Card className="card">
-            <h2>Performance Metrics</h2>
-            <ul>
-              <li>Metric 1</li>
-              <li>Metric 2</li>
-              <li>Metric 3</li>
-            </ul>
-            <Button label="View Details" className="p-button-secondary" />
-          </Card>
-        </div>
+        <Card className="interactive-card">
+          <CardContent>
+            <Typography variant="h5" component="div">User Feedback</Typography>
+            <div className="chart-container">
+              <Chart type="doughnut" data={doughnutData} options={options} />
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="p-col-12 p-md-6 p-lg-8">
-          <Card className="card">
-            <h2>User Feedback</h2>
-            <p>User comments and ratings</p>
-          </Card>
-        </div>
-
-        <div className="p-col-12 p-lg-4">
-          <Card className="card">
-            <h2>Trends Analysis</h2>
-            <Chart type="line" data={data} options={options} style={{ height: '300px' }} />
-          </Card>
-        </div>
-
-        <div className="p-col-12 p-lg-4">
-          <Card className="card">
-            <h2>Sentiment Analysis</h2>
-            <Chart type="doughnut" data={doughnutData} style={{ height: '300px' }} />
-          </Card>
-        </div>
-
-        <div className="p-col-12 p-lg-4">
-          <Card className="card">
-            <h2>Recent Activities</h2>
-            <ul>
-              <li>User X performed action Y</li>
-              <li>User Z accessed feature A</li>
-              <li>System updated to version 1.2.3</li>
-            </ul>
-          </Card>
-        </div>
+        <Card className="interactive-card">
+          <CardContent>
+            <Typography variant="h5" component="div">Recent Activities</Typography>
+            <IconButton 
+              onClick={() => setOpenActivities(!openActivities)}
+              className="expand-icon"
+            >
+              {openActivities ? <ExpandLess /> : <ExpandMore />}
+            </IconButton>
+            <Collapse in={!openActivities}>
+              <List>
+                <ListItem>
+                  <ListItemIcon>
+                    <Person color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="User X performed Action Y"
+                    secondary="2 hours ago"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <ArrowUpward color="secondary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="User Z accessed Feature A"
+                    secondary="4 hours ago"
+                  />
+                </ListItem>
+              </List>
+            </Collapse>
+            <Collapse in={openActivities}>
+              <List>
+                <ListItem>
+                  <ListItemIcon>
+                    <Person color="primary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="User X performed Action Y"
+                    secondary="2 hours ago"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <ArrowUpward color="secondary" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="User Z accessed Feature A"
+                    secondary="4 hours ago"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <Settings color="action" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="System updated to Version 1.2.3"
+                    secondary="1 day ago"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <ArrowDownward color="warning" />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary="User A logged out"
+                    secondary="1 hour ago"
+                  />
+                </ListItem>
+              </List>
+            </Collapse>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
