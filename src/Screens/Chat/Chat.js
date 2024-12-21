@@ -8,7 +8,7 @@ const aiImage =
   "https://media.licdn.com/dms/image/D4D12AQFwvqrajd2edQ/article-cover_image-shrink_720_1280/0/1688369553748?e=2147483647&v=beta&t=BEVzfBTuU6czg9QQzkumzw_tRpiPEPDCt8zX5P3QeNg";
 
 const API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBKwmxvZ6CNV6LubLjo0AaKJyDG4YFZ20A";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyBMY3UkSkAa32xkoNgYCPvOuRDoder7tq4";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
